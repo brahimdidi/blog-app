@@ -5,6 +5,10 @@ AllCops:
     - "Rakefile"
     - "node_modules/**/*"
     - "bin/bundle"
+    - "bin/rails"
+    - "bin/rake"
+    - "bin/setup"
+    - "bin/importmap"
     - "config/environments/production.rb"
     - "config/puma.rb"
 
