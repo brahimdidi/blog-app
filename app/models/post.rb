@@ -10,7 +10,6 @@ class Post < ApplicationRecord
 
   def last_5_comments(post)
     post = self.where(id: post.id)
-    recent_comments = post.comments.limit(5).order(created_at: :desc)
-    recent_comments
+    post.comments.limit(5).order(created_at: :desc)
   end
 end
