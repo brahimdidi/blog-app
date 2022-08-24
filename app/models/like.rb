@@ -1,3 +1,4 @@
+# rubocop:disable Layout/EndOfLine
 class Like < ApplicationRecord
   belongs_to :user
   belongs_to :post
@@ -7,3 +8,5 @@ class Like < ApplicationRecord
     post.update(likesCounter: likes_number)
   end
 end
+
+# rubocop:enable Layout/EndOfLine

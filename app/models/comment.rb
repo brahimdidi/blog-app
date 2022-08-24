@@ -1,3 +1,4 @@
+# rubocop:disable Layout/EndOfLine
 class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
@@ -7,3 +8,4 @@ class Comment < ApplicationRecord
     post.update(commentsCounter: comments_number)
   end
 end
+# rubocop:enable Layout/EndOfLine
