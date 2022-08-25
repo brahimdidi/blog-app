@@ -7,7 +7,6 @@ AllCops:
     - "bin/bundle"
     - "config/environments/production.rb"
     - "config/puma.rb"
-
   DisplayCopNames: true
 
 Layout/LineLength:
