@@ -23,4 +23,6 @@ RSpec.describe User, type: :model do
     subject.postsCounter = 'test'
     expect(subject).to_not be_valid
   end
+
+  it 'should add the 3 latest comments'
 end
