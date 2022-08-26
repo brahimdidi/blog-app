@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
+  subject { Comment.new }
+
+  before { subject.save }
   it 'should belong to user and post' do
     user = Comment.reflect_on_association(:user)
     post = Comment.reflect_on_association(:post)

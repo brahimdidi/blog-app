@@ -1,8 +1,8 @@
 require 'rails_helper'
 RSpec.describe Post, type: :model do
-  subject {Post.new(title: 'Post test', text: 'this is a test for Post', )}
+  subject { Post.new(title: 'Post test', text: 'this is a test for Post') }
 
-  before {subject.save}
+  before { subject.save }
   it 'should have many comments and likes' do
     comments = Post.reflect_on_association(:comments)
     likes = Post.reflect_on_association(:likes)

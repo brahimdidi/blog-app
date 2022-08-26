@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
+  subject { Like.new }
+
+  before { subject.save }
   it 'should belong to user and post' do
     user = Like.reflect_on_association(:user)
     post = Like.reflect_on_association(:post)

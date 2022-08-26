@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  subject {User.new(name: 'user test', bio: 'this is a test for user', )}
+  subject { User.new(name: 'user test', bio: 'this is a test for user') }
 
-  before {subject.save}
+  before { subject.save }
   it 'should have many posts, comments and likes' do
     posts = User.reflect_on_association(:posts)
     comments = User.reflect_on_association(:comments)
