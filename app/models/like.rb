@@ -6,4 +6,3 @@ class Like < ApplicationRecord
     post.increment!(:likesCounter)
   end
 end
-
