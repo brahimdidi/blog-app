@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :likes
   has_many :comments
 
-  validates :title, presence: true, length: { maximum: 10 }
+  validates :title, presence: true, length: { maximum: 250 }
   validates :commentsCounter, :likesCounter, numericality: { greater_than: -1, allow_nil: true }
   def increment_posts_counter
     user.increment!(:postsCounter)
