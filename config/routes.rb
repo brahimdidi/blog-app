@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  
-  resources :users,  shallow: true do
+  resources :users, shallow: true do
     resources :comments
     resources :posts
   end

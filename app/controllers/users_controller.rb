@@ -2,9 +2,11 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
-  def show 
+
+  def show
     @user = User.find(params[:id])
   end
+
   def new
     @user = User.new(params[:user])
     if @user.save
@@ -12,7 +14,7 @@ class UsersController < ApplicationController
     else
       # This line overrides the default rendering behavior, which
       # would have been to render the "create" view.
-      render "new"
+      render 'new'
     end
   end
 end

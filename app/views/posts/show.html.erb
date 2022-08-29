@@ -4,7 +4,7 @@
       <span>@<%= @post.user.name %>:<span/> </h5>
       <p class="card-text ml-3"><%= @post.title %>: <br/><%= @post.text %></p>
     </div>
-    <h4>All comments:</h4>
+    <h4>Comments(<%=@comments.length%>) :</h4>
     <div class='card'>
     <% @comments.each do |comment| %>
     <li class= 'list-group-item d-flex flex-column'>
