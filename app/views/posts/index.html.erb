@@ -1,0 +1,11 @@
+<h1>Posts of <%= @user.name %></h1>
+
+<% @posts.each do |post| %>
+  <div class= 'card'>
+    <div class="card-body">
+      <h5 class="card-title">
+      <span>@<%= post.user.name %>:<span/> </h5>
+      <p class="card-text ml-3"><%= post.title %>: <br/><%= post.text %></p>
+    </div>
+  </div>
+<% end %>
