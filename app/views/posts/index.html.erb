@@ -6,6 +6,8 @@
       <h5 class="card-title">
       <span>@<%= post.user.name %>:<span/> </h5>
       <p class="card-text ml-3"><%= post.title %>: <br/><%= post.text %></p>
+      <%= link_to "see more", post%>
     </div>
   </div>
+
 <% end %>

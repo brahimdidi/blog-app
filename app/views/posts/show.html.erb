@@ -4,5 +4,13 @@
       <span>@<%= @post.user.name %>:<span/> </h5>
       <p class="card-text ml-3"><%= @post.title %>: <br/><%= @post.text %></p>
     </div>
-   <%= link_to "see more", post%>
+    <h4>All comments:</h4>
+    <div class='card'>
+    <% @comments.each do |comment| %>
+    <li class= 'list-group-item d-flex flex-column'>
+      <span> @<%= comment.user.name %> : </span> 
+      <p> <%= comment.text %> </p>
+      </li>
+    <% end %>
+    </div>
 </div>
