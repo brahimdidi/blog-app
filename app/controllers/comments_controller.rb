@@ -3,6 +3,6 @@ class CommentsController < ApplicationController
     @user = User.find(params[:user_id])
     @comments = @user.comments
   end
-  def show
-  end
+
+  def show; end
 end

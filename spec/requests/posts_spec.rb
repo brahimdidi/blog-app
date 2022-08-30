@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'Posts', type: :request do
   describe 'GET /index' do
-    before :each do 
+    before :each do
       get '/users/1/posts'
     end
     it 'returns http success' do
