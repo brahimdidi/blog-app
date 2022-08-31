@@ -21,6 +21,8 @@
     <p>
     <%= post.text%>
     </p>
+    <span>comments: <%= post.comments.length %></span>
+    <span class='ml-2'>likes: <%= post.likesCounter%></span>
     </li>
   <% end %>
 </ul>
