@@ -1,1 +1,12 @@
-<h1>Users#index</h1>
+<h1>Users </h1>
+<ul class='list-group'>
+  <%@users.each do |user| %>
+    <li class ='list-group-item d-flex'>
+          <img src=<%= user.photo %> alt='profile picture' class='p-3'>
+          <div class='ml-4 p-1'>
+            <h1> Name:  <%= user.name %></h1>
+            <span>Posts number  <%= user.postsCounter %></span>
+          </div>
+    </li>
+  <%end %>
+</ul>
