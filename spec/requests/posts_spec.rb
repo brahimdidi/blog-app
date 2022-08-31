@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "Posts", type: :request do
-  describe "GET /index" do
-    before :each do 
+RSpec.describe 'Posts', type: :request do
+  describe 'GET /index' do
+    before :each do
       get '/users/1/posts'
     end
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:success)
     end
     it 'renders the correct template' do
@@ -17,11 +17,11 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
-  describe "GET /show" do
-    before :each do 
+  describe 'GET /show' do
+    before :each do
       get '/users/1/posts/1'
     end
-    it "returns http success" do
+    it 'returns http success' do
       expect(response).to have_http_status(:ok)
     end
     it 'renders the correct template' do
@@ -32,5 +32,4 @@ RSpec.describe "Posts", type: :request do
       expect(body).to include('Posts#show')
     end
   end
-
 end
