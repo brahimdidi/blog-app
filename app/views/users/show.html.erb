@@ -9,8 +9,8 @@
    Bio : <%= @user.bio %>
 </li>
 
-<div class='btn-group'>
-<%= link_to "Back to users", users_path  %>
-<a href =<%= @comments_link %> >  show comments </a>
-<a href =<%= @posts_link %> >  show posts </a>
+<div class='btn-group d-flex'>
+<%= link_to "Back to users", users_path , class: 'btn  btn-light ' %>
+<a href =<%= @comments_link %> class='btn  btn-light '>  show comments </a>
+<a href =<%= @posts_link %> class='btn  btn-light '>  show posts </a>
 </div>
