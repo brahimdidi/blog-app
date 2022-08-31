@@ -20,7 +20,7 @@ RSpec.describe "Users", type: :request do
 
   describe "GET /show" do
     before :each do 
-      get '/users/show'
+      get '/users/1'
     end
     it "returns http success" do
       get "/users/1"
