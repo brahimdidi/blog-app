@@ -1,16 +1,1 @@
-<% @comments_link = "http://localhost:3000/users/#{@user.id}/comments" %>
-<% @posts_link = "http://localhost:3000/users/#{@user.id}/posts" %>
-
-<li class= 'list-group-item d-flex justify-content-around'>
-   Name : <%= @user.name %>
-   <span>number of posts : <%= @user.posts.length %> </span> 
-</li>
-<li class= 'list-group-item d-flex justify-content-around'>
-   Bio : <%= @user.bio %>
-</li>
-
-<div class='btn-group d-flex'>
-<%= link_to "Back to users", users_path , class: 'btn  btn-light ' %>
-<a href =<%= @comments_link %> class='btn  btn-light '>  show comments </a>
-<a href =<%= @posts_link %> class='btn  btn-light '>  show posts </a>
-</div>
+<h1>Users#show</h1>
