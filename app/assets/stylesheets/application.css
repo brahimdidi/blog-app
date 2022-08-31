@@ -13,3 +13,33 @@
  *= require_tree .
  *= require_self
  */
+ * {
+  font-family: 'Roboto', sans-serif;
+ }
+ ul {
+  gap: 10px !important;
+ }
+ ul li {
+  padding: 10px;
+ }
+ a {
+  /* list-style-type: none;
+  border: 1px solid black;
+  padding: 8px;
+  border-radius: 10px;
+  width: fit-content;
+  text-align: center;
+  font-size: 20px;
+  height: fit-content; */
+  font-family: 'Anek Telugu', sans-serif;
+ }
+ span {
+  font-weight: bold;
+ }
+form {
+  margin: 0 auto;
+}
+.form-group {
+  gap: 5px;
+}
+

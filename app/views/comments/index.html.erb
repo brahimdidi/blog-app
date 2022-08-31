@@ -1,0 +1,13 @@
+<h1>Comments for <%=@user.name%></h1>
+<ul class= 'list-group'>
+
+<% @comments.each do |comment| %>
+  <li class= 'list-group-item d-flex flex-column'>
+  <span> @<%= comment.user.name %> : </span> 
+  <p> <%= comment.text %> </p>
+  <%= link_to "see comment", comment, class:'nav-link' %>
+  <%= link_to "see post", comment.post%>
+  </li>
+  <% end %>
+ 
+</ul>
