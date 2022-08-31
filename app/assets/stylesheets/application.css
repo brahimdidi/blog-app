@@ -38,3 +38,6 @@ form {
 .form-group {
   gap: 5px;
 }
+.collapsing {
+  height: 0px ;
+}
