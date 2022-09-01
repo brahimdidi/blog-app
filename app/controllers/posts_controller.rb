@@ -18,7 +18,7 @@ class PostsController < ApplicationController
   end
   def create 
     @user = current_user
-    @post = @user.posts.new(title: params[:title],text: params[:text])
+    @post = @user.posts.new(params.require(:post).permit(:title, :text))
     if @post.save
       flash[:success] = "Question saved successfully"
       redirect_to user_posts_path(@user)
