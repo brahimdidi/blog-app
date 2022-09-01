@@ -1,0 +1,10 @@
+<div>
+<span>@<%=@user.name%></span><span class='ml-3 fw-bold'>Post title:<%=@post.title%></span> 
+<h3>comment on this post</h3>
+</div>
+<%= form_with model: @comment,url: user_post_comments_path, 
+method: :post, local: true, scope: :comment,class: 'w-100 d-flex flex-column'  do |form| %>
+  <%= form.text_field :text, placeholder: 'write your comment here',class: 'w-50' %>
+  <%= form.submit "comment",class: 'w-50 btn btn-success' %>
+  <% end %>
+<%= link_to "Back to post", user_posts_path(@post), class:"btn btn-info mt-2 w-25" %>
