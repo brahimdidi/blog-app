@@ -1,8 +1,8 @@
 <div><span>@<%=@user.name%></span> <h3>Create new post</h3></div>
-<%= form_with model: @post,url: user_posts_path, 
+<%= form_with model: @post, url: user_posts_path, 
 method: :post, local: true, scope: :post,class: 'w-100 d-flex flex-column'  do |form| %>
   <%= form.text_field :title, placeholder: 'title',class: 'w-50' %>
   <%= form.text_field :text, placeholder: 'post content',class: 'w-50' %>
   <%= form.submit "post",class: 'w-50 btn btn-success' %>
-  <% end %>
-  <%= link_to "Back to posts", user_posts_path, class:"btn btn-info mt-2 w-25" %>
+<% end %>
+<%= link_to "Back to posts", user_posts_path, class:"btn btn-info mt-2 w-25" %>
