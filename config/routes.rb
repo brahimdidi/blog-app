@@ -7,6 +7,6 @@ Rails.application.routes.draw do
     end
   end
   # Defines the root path route ("/")
-   post '/likes/new', to: 'likes#create'
+  post '/likes/new', to: 'likes#create'
   # root "articles#index"
 end
