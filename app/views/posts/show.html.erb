@@ -1,7 +1,7 @@
 
 
 <li class='list-group-item'>
-<h1>Post #<%=@post.id%>by <%= @user.name%></h1>
+<h1>Post #<%=@post.id%> by <%= @user.name%></h1>
 <h4> <%= @post.title %> </h4>
 <p>
 <%= @post.text%>
@@ -12,7 +12,7 @@
    <%else%>
     <div class = 'card p-1 mt-1'>
       <% @comments.each do |comment|%>
-      <p><%=comment.user.name%>: <%=comment.text%><p>
+      <p class='bg-light p-1'><%=comment.user.name%>: <%=comment.text%><p>
       <%end%>
     </div>
 <% end %>
