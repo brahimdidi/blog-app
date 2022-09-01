@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @user = current_user
     comment = Comment.new
     respond_to do |format|
-      format.html { render :new, locals: { comment: comment } }
+      format.html { render :new, locals: { comment: } }
     end
   end
 
