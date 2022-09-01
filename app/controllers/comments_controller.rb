@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @comment.post_id = @post.id
     if @comment.save
       flash[:notice] = 'Comment successfully created!'
-      redirect_to user_posts_url(@user, @post)
+      redirect_to user_posts_path(@user, @post)
     else
       flash.now[:error] = 'Comment cannot be created!'
       render :new, locals: { comment: @comment }
