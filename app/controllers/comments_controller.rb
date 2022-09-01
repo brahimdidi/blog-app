@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class CommentsController < ApplicationController
   def new
     @user = current_user
     comment = Comment.new
