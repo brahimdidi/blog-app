@@ -1,0 +1,6 @@
+<div><span>@<%=@user.name%></span> <h3>Create new post</h3></div>
+<%= form_with model: @post do |form| %>
+  <%= form.text_field :title,placeholder: 'title' %>
+  <%= form.text_field :text, placeholder: 'post content' %>
+  <%= form.submit "post" %>
+<% end %>
