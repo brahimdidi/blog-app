@@ -1,0 +1,10 @@
+<% if @comments.empty?  %>
+<%= 'No comments yet' %>
+<%else %>
+
+<ul class='list-group'>
+<%@comments.each do |comment| %>
+<li class='list-group-item'><%= comment.text %></li>
+<%end %>
+</ul>
+<%end %>
