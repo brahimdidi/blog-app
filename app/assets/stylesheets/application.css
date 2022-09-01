@@ -32,6 +32,10 @@
   font-size: 20px;
   height: fit-content; */
   font-family: 'Anek Telugu', sans-serif;
+  text-transform: capitalize;
+ }
+ h1 {
+  font-size: 4vw;
  }
  span {
   font-weight: bold;
@@ -42,4 +46,3 @@ form {
 .form-group {
   gap: 5px;
 }
-
