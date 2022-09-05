@@ -15,7 +15,7 @@
     Post #<%=post.id%>
     <h4 class='border-top'>Title: <%= post.title %> </h4>
       <p class='p-2'>
-      <%= post.text%>
+      <%= post.text%> 
       </p>
       <div><span>comments: <%= post.comments.length %></span>
       <span class='ml-2'>likes: <%= post.likesCounter%></span></div>
@@ -29,13 +29,15 @@
         <%end%>
       </div>
     <% end %>
-    <%= link_to 'comment on this post', new_user_post_comment_path(@user,post), class:'btn btn-primary d-block' %>
-    <%= form_with model: @like, url: likes_new_path do |form| %>
-          <%= form.hidden_field :post_id, value: post.id %>
-      <div class="actions">
-          <%= form.submit "Like", class: 'btn btn-danger w-100' %>
-      </div>
-    <% end %>
+    <br>
+    <div class = 'btn-group'>
+      <%= link_to 'show this post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
+      <%= form_with model: @like, url: likes_new_path do |form| %>
+        <%= form.hidden_field :post_id, value: post.id %>
+        <%= form.submit "like this Post", class: 'btn btn-outline-danger ' %>
+      <% end %>
+      <%= link_to 'comment on this post', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
+    </div>
     <% end %>
     </li>
   </ul>
