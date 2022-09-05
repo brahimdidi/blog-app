@@ -1,8 +1,8 @@
 <li class ='list-group-item d-flex'>
-  <img src=<%= @user.photo %> alt='profile picture' class='p-3'>
+  <img src=<%= @user.photo %> alt='profile picture' class='p-3 w-25'>
   <div class='ml-4 p-1'>
     <h1> Name:  <%= @user.name %></h1>
-    <span>Posts number  <%= @user.postsCounter %></span>
+    <span> Posts:  <%= @user.postsCounter %></span>
   </div>
 </li>
 <% if @posts.empty? %>
@@ -13,8 +13,8 @@
       <% @comments = post.comments %>
       <li class='list-group-item'>
     Post #<%=post.id%>
-    <h4> <%= post.title %> </h4>
-      <p>
+    <h4 class='border-top'>Title: <%= post.title %> </h4>
+      <p class='p-2'>
       <%= post.text%>
       </p>
       <div><span>comments: <%= post.comments.length %></span>
@@ -29,7 +29,7 @@
         <%end%>
       </div>
     <% end %>
-    <%= link_to 'comment on this post', new_user_post_comment_path(@user,post), class:'btn btn-dark d-block' %>
+    <%= link_to 'comment on this post', new_user_post_comment_path(@user,post), class:'btn btn-primary d-block' %>
     <%= form_with model: @like, url: likes_new_path do |form| %>
           <%= form.hidden_field :post_id, value: post.id %>
       <div class="actions">
