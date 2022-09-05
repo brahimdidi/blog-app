@@ -30,11 +30,11 @@
       </div>
     <% end %>
     <br>
-    <div class = 'btn-group'>
+    <div class = 'btn-group align-text-center'>
       <%= link_to 'show this post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
-      <%= form_with model: @like, url: likes_new_path do |form| %>
+      <%= form_with model: @like, class: 'btn btn-outline-danger', url: likes_new_path do |form| %>
         <%= form.hidden_field :post_id, value: post.id %>
-        <%= form.submit "like this Post", class: 'btn btn-outline-danger ' %>
+        <%= form.submit "Like This Post",class: 'btn btn-outline-danger ' %>
       <% end %>
       <%= link_to 'comment on this post', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
     </div>
