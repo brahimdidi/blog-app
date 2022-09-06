@@ -3,7 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Posts', type: :request do
   describe 'GET /index' do
     before :each do
-      get '/users/1/posts'
+      @user = User.create(name: 'username test', photo: 'photo/test',bio: 'bio test');
+      @post = Post.create(title: 'post index title',text: 'post index text',user:@user);
+      get user_posts_path(@user)
     end
     it 'returns http success' do
       expect(response).to have_http_status(:success)
@@ -13,13 +15,15 @@ RSpec.describe 'Posts', type: :request do
     end
     it 'has the correct text placeholderss' do
       body = response.body
-      expect(body).to include('Posts#index')
+      expect(body).to include(@post.title)
     end
   end
 
   describe 'GET /show' do
     before :each do
-      get '/users/1/posts/1'
+      @user = User.create(name: 'username test', photo: 'photo/test',bio: 'bio test');
+      @post = Post.create(title: 'post show title',text: 'post show text',user:@user);
+      get user_post_path(@user,@post)
     end
     it 'returns http success' do
       expect(response).to have_http_status(:ok)
@@ -29,7 +33,8 @@ RSpec.describe 'Posts', type: :request do
     end
     it 'has the correct text placeholderss' do
       body = response.body
-      expect(body).to include('Posts#show')
+      expect(body).to include(@post.title)
+      expect(body).to include(@post.text)
     end
   end
 end
