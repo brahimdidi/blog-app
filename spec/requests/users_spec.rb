@@ -19,7 +19,7 @@ RSpec.describe 'Users', type: :request do
 
   describe 'GET /show' do
     before :each do
-      @user = User.create(name: 'username test', photo: 'photo/test',bio: 'this is index test',postsCounter:4);
+      @user = User.create(name: 'username test', photo: 'photo/test', bio: 'this is index test', postsCounter: 4)
       get user_path(@user)
     end
     it 'returns http success' do
