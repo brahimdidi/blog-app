@@ -19,10 +19,10 @@ class CommentsController < ApplicationController
     @comment.user_id = @user.id
     @comment.post_id = @post.id
     if @comment.save
-      flash[:notice] = 'Comment successfully created!'
-      redirect_to user_posts_path(@user, @post)
+      flash[:notice] = 'Comment was published on the post!'
+      redirect_to user_post_path(@post.user, @post)
     else
-      flash.now[:error] = 'Comment cannot be created!'
+      flash.now[:notice] = 'Could not send your comment ,please try again!'
       render :new, locals: { comment: @comment }
     end
   end
