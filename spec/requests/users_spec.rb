@@ -6,24 +6,23 @@ RSpec.describe 'Users', type: :request do
       get '/users'
     end
     it 'returns http success' do
-      get '/users'
       expect(response).to have_http_status(:success)
     end
     it 'renders the correct template' do
       expect(response).to render_template('index')
     end
-    it 'has the correct text placeholderss' do
+    it 'has the correct text placeholders' do
       body = response.body
-      expect(body).to include('Users#index')
+      expect(body).to include('Users')
     end
   end
 
   describe 'GET /show' do
     before :each do
-      get '/users/1'
+      @user = User.create(name: 'username test', photo: 'photo/test', bio: 'this is index test', postsCounter: 4)
+      get user_path(@user)
     end
     it 'returns http success' do
-      get '/users/1'
       expect(response).to have_http_status(:success)
     end
     it 'renders the correct template' do
@@ -31,7 +30,7 @@ RSpec.describe 'Users', type: :request do
     end
     it 'has the correct text placeholderss' do
       body = response.body
-      expect(body).to include('Users#show')
+      expect(body).to include(@user.name)
     end
   end
 end
