@@ -18,6 +18,14 @@
   <body class='bg-grey'>
     <div class= 'container bg-light mb-2'>
       <%= render 'layouts/navbar' %>
+      <% if notice %>
+      <p class= 'alert alert-secondary'><%= notice%> </p>
+      <script>
+        setTimeout(function(){
+        let alertElement = document.querySelector('.alert');
+        alertElement.remove();console.log('element removed')},2000);
+      </script>
+      <%end%>
       <%= yield %>
     </div>
   </body>
