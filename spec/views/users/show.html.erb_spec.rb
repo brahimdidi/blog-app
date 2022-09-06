@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'users/show.html.erb', type: :view do
+RSpec.describe 'users/show.html.erb', type: :system do
   describe 'show page' do
     before :each do
       @user = User.create(name: 'test', photo: 'photo/test',bio: 'this is show test',postsCounter:4);
@@ -11,10 +11,10 @@ RSpec.describe 'users/show.html.erb', type: :view do
       @page = response.body
     end 
     it "shows user's name, picture, bio and number of posts" do
-      expect(@page).to have_content('test')
-      expect(@page).to include('photo/test')
-      expect(@page).to include('this is show test')
-      expect(@page).to include('4')
+      expect(@page).to include(@user.photo)
+      expect(@page).to include(@user.name)
+      expect(@page).to include(@user.bio)
+      expect(@page).to include(@user.postsCounter.to_s)
     end
 
     it 'display the user last 3 posts' do 
