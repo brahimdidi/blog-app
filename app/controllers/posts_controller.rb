@@ -22,10 +22,10 @@ class PostsController < ApplicationController
     @user = current_user
     @post = @user.posts.new(params.require(:post).permit(:title, :text))
     if @post.save
-      flash[:success] = 'Question saved successfully'
+      flash[:notice] = 'Post was saved successfully'
       redirect_to user_posts_path(@user)
     else
-      flash.now[:error] = 'Error:Post could not be saved'
+      flash.now[:notice] = 'Error:Post could not be saved'
       render :new, locals: { post: @post }
     end
   end
