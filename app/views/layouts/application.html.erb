@@ -21,9 +21,20 @@
       <% if notice %>
       <p class= 'alert alert-secondary'><%= notice%> </p>
       <script>
-        setTimeout(function(){
-        let alertElement = document.querySelector('.alert');
-        alertElement.remove();console.log('element removed')},2000);
+      (function() {
+        let alertElement = document.querySelector('.alert')
+        let text = alertElement.textContent;
+        text = text.toLowerCase()
+        console.log(text)
+        if (text.includes('error')) {
+          alertElement.classList.replace('alert-secondary','alert-danger')
+        };
+     })();
+  
+        setTimeout (function () {
+        let alertElement = document.querySelector('.alert')
+        alertElement.remove()
+        }, 2000);
       </script>
       <%end%>
       <%= yield %>
