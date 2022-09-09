@@ -1,9 +1,12 @@
 <header class="header w-100 p-1 bg-dark d-flex p-2 justify-content-between">
   <%= link_to 'users', users_path, class: '' %>
-  <%= link_to 'posts', users_path, class: '' %>
   <nav class="nav d-flex justify-content-between w-50" id="navbar">
       <% if user_signed_in? %>
-      <%= link_to 'sign out', destroy_user_session_path, class: '' %>
+        <div class= 'btn-group'>
+          <%= link_to 'create a new post', new_user_post_path(current_user), class: 'btn btn-primary ml-1' %>
+          <%= link_to 'My posts', user_posts_path(current_user), class: 'btn btn-primary' %>
+          <%= button_to 'sign out', destroy_user_session_path, method: :delete, class: 'btn btn-danger' %>
+        </div>
       <% else %>
       <%= link_to 'sign up', new_user_registration_path, class: '' %>
       <%= link_to 'sign in', new_user_session_path, class: '' %>
