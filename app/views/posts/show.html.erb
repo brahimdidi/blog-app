@@ -10,12 +10,20 @@
 <span>comments: <%= @post.comments.length %></span>
 <span class='ml-2'>likes: <%= @post.likesCounter%></span>
 </div>
+<% if can? :destroy, @post%>
+        <%= button_to "Delete", user_post_path(@user, @post), method: :delete, class: "btn btn-danger" %>
+<% end %>
 <% if @comments.empty? %>
    <%= 'No Comments yet' %>
    <%else%>
-    <div class = 'card p-1 mt-1'>
+    <div class = 'list-group p-1 mt-1'>
       <% @comments.each do |comment|%>
-      <p class='bg-light p-1'><%=comment.user.name%>: <%=comment.text%><p>
+      <div class='bg-light p-1 d-flex justify-content-between'>
+        <%=comment.user.name%>: <%=comment.text%>
+        <% if can? :destory, comment%>
+              <%= button_to "Delete this comment", user_post_comment_path(comment.user_id, comment.post_id, comment.id), method: :delete, class: "btn btn-danger" %>
+        <% end %>
+      </div>
       <%end%>
     </div>
 <% end %>
