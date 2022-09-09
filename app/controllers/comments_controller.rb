@@ -26,7 +26,6 @@ class CommentsController < ApplicationController
       render :new, locals: { comment: @comment }
     end
   end
-
   def destroy
     comment = Comment.find(params[:id])
     post = Post.find(params[:post_id])
