@@ -10,4 +10,17 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   post '/likes/new', to: 'likes#create'
   root 'users#index'
+
+  namespace :api do 
+    resources :users do
+      resources :posts do 
+        resources :comments
+      end
+    end
+  end
+
+  namespace :api do
+    resources :authentications, only: :create
+  end
+  
 end
