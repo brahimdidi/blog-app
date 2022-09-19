@@ -18,5 +18,9 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :api do
+    resources :authentications, only: :create
+  end
   
 end
