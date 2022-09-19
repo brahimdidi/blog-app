@@ -1,4 +1,4 @@
-class API::V1::CommentsController < ApplicationController
+class Api::CommentsController < ApplicationController
   # set  protect_from_forgery to :null_session
   protect_from_forgery with: :null_session
 

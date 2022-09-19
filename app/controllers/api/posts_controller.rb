@@ -1,8 +1,7 @@
-class API::V1::PostsController < ApplicationController
-  before_action :set_post, only: %i[show]
+class Api::PostsController < ApplicationController
 
   def index
-    @user = User.find(params[:user_id]).includes(:posts)
+    @user = User.find(params[:user_id])
     @posts = @user.posts
 
     if @posts.empty?
@@ -13,17 +12,14 @@ class API::V1::PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id]).includes(:comments)
-    @comments = @post.comments
+    @post = Post.find(params[:id])
 
-    if @comments.empty?
-      render json: { message: 'No comments yet' }, status: :not_found
+    if @post.nil?
+      render json: { message: 'Post not found' }, status: :not_found
     else
-      render json: @comments
+      render json: @post
     end
   end
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
+ 
 end

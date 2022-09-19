@@ -34,6 +34,7 @@ class PostsController < ApplicationController
     post = Post.find(params[:id])
     user = User.find(post.user_id)  
     post.comments.destroy_all if post.comments.any?
+    post.likes.destroy_all if post.likes.any?
     post.destroy
     if user.save
       redirect_to user_posts_path, notice: 'Post was successfully deleted.'
