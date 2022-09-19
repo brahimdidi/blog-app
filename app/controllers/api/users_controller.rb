@@ -1,7 +1,6 @@
-class API::V1::UsersController < ApplicationController
+class Api::UsersController < ApplicationController
   # before_action :authorize_request, except: :create
   
-  before_action :set_user, only: %i[show]
 
   def index
     @users = User.all
@@ -14,17 +13,14 @@ class API::V1::UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id]).includes(:posts)
-    @posts = @user.posts
+    @user = User.find(params[:id])
 
-    if @posts.empty?
-      render json: { message: 'No posts yet' }, status: :not_found
+    if @user.nil?
+      render json: { message: 'No user found' }, status: :not_found
     else
-      render json: @posts
+      render json: @user
     end
   end
 
-  def set_user
-    @user = User.find(params[:id])
-  end
+  
 end
