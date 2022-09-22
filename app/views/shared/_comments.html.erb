@@ -1,0 +1,11 @@
+<div class = 'list-group p-1 mt-1 comment-list'>
+
+<% @comments.each do |comment|%>
+  <div class='bg-light p-1 d-flex justify-content-between'>
+  <span> <span class='fw-bold '>@<%=comment.user.name.strip%>:</span> <%=comment.text%></span>
+    <% if can? :destory, comment%>
+        <%= button_to "🗑️", user_post_comment_path(comment.user_id, comment.post_id, comment.id), method: :delete , class: ' btn btn-danger'%>
+    <% end %>
+  </div>
+<%end%>
+</div>
