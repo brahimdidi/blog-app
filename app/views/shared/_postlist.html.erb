@@ -1,0 +1,35 @@
+this is paratial
+
+<ul class='list-group mt-3'>
+<% @posts.each do |post| %>
+  <% @comments = post.comments %>
+<li class='list-group-item '>
+<div class='post-title-text'>
+  Post #<%=post.id%>
+    <h4>Title: <%= post.title %> </h4>
+    <p class='p-2 '>
+    <%= post.text%> 
+    </p>
+ </div>
+ <div>
+    <span>comments: <%= post.comments.length %></span>
+    <span class='ml-2'>likes: <%= post.likesCounter%></span>
+ </div>
+    
+  <% unless @comments.empty? %>
+      <%= render :partial => "shared/comments", :comments => :comments %>
+  <% end %>
+  <br>
+  <div class = 'btn-group align-text-center'>
+    <%= link_to 'show this post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
+    <%if user_signed_in? %>
+    <%= form_with model: @like, class: 'btn btn-outline-danger', url: likes_new_path do |form| %>
+      <%= form.hidden_field :post_id, value: post.id %>
+      <%= form.submit "Like",class: 'btn btn-outline-danger' %>
+    <% end %>
+    <%= link_to 'comment on this post', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
+    <%end%>
+  </div>
+  <% end %>
+</li>
+</ul>
