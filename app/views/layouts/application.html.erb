@@ -10,29 +10,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Telugu:wght@200;300&family=Roboto:wght@300&display=swap" rel="stylesheet">
-     <link rel='stylesheet' href= 'https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css'>
+
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true, type: 'module' %>  
   </head>
 
-  <body class='bg-grey'>
-    <div class= 'container bg-light mb-2'>
+  <body class=''>
+    <div class= 'container bg-secondary mb-2'>
       <%= render 'layouts/navbar' %>
-      <%if alert %>
+      <% if alert %>
       <p class="alert alert-danger"><%= alert %></p>
-      <% elsif notice %>
-      <p class= 'notice alert alert-success'><%= notice%> </p>
+      <%end%>
+      <% if notice %>
+      <p class= 'alert alert-success'><%= notice%> </p>
       <script>
-      // this function changes the alert color incase of error
-        (function() {
-          let alertElement = document.querySelector('.alert')
-          let text = alertElement.textContent;
-          text = text.toLowerCase()
-          console.log(text)
-          if (text.includes('error')) {
-            alertElement.classList.replace('alert-secondary','alert-danger')
-          };
-        })();
      // this function auto remove the alert after 2 seconds
         setTimeout (function () {
         let alertElement = document.querySelector('.alert')
@@ -41,9 +33,7 @@
       </script>
       <%end %>
       <%= yield %>
+      
     </div>
     
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-  </body>
 </html>
