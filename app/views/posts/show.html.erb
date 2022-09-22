@@ -1,54 +1,46 @@
 
 
-<li class='list-group-item'>
-<h1>Post #<%=@post.id%> by <%= @user.name%></h1>
-<span>this post was published on <%= @post.created_at %></span>
-<h4> <%= @post.title %> </h4>
-<p>
-<%= @post.text%>
-</p>
-<div>
-<span>comments: <%= @post.comments.length %></span>
-<span class='ml-2'>likes: <%= @post.likesCounter%></span>
-</div>
-<div id='dropdown' class="dropdown">
-  <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    more
-  </button>
-  <ul  class="dropdown-menu dropdown-menu-dark">
-  <% if can? :destroy, @post%>
-   <li><%= button_to "Delete this post", user_post_path(@user, @post), method: :delete, class: "btn text-danger w-100" %></li>
-  <% end %>
+<div class='card show-post-container'>
+  <h1>Post #<%=@post.id%> by <%= @user.name%></h1>
+  <span>this post was published on <%= @post.created_at %></span>
+  <h4> <%= @post.title %> </h4>
+  <p>
+  <%= @post.text%>
+  </p>
+  <div>
+  <span>comments: <%= @post.comments.length %></span>
+  <span class='ml-2'>likes: <%= @post.likesCounter%></span>
+  </div>
+  <div id='dropdown' class="dropdown">
+    <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      more
+    </button>
+    <ul class="dropdown-menu">
+    <% if can? :destroy, @post%>
+      <li><%= button_to "Delete this post", user_post_path(@user, @post), method: :delete, class: "dropdown-item text-danger" %></li>
+    <% end %>
     <li> <%= link_to 'See author of this post', @post.user ,class:"dropdown-item" %></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-    <li><hr class="dropdown-divider"></li>
-    <li><a class="dropdown-item" href="#">Separated link</a></li>
-  </ul>
-</div>
-<% if @comments.empty? %>
-   <%= 'No Comments yet' %>
-   <%else%>
-    <div class = 'list-group p-1 mt-1'>
-      <% @comments.each do |comment|%>
-      <div class='bg-light p-1 d-flex justify-content-between'>
-       <span> <span class='text-bolder'><%=comment.user.name%>:</span> <%=comment.text%></span>
-        <% if can? :destory, comment%>
-            <%= button_to "🗑️", user_post_comment_path(comment.user_id, comment.post_id, comment.id), method: :delete %>
-        <% end %>
-      </div>
+    <li><a class="dropdown-item" href="#">Another action</a></li>
+    </ul>
+  </div>
+
+
+  <% if @comments.empty? %>
+    <%= 'No Comments yet' %>
+    <%else%>
+  <%= render :partial => "shared/comments", :comments => :comments %>
+      
+  <% end %>
+  <%if user_signed_in? %>
+  <br>
+    <div class='btn-group'>
+      <%= link_to 'comment on this post', new_user_post_comment_path(@user,@post), class:'btn btn-outline-primary' %>
+        <%= form_with model: @like, url: likes_new_path do |form| %>
+          <%= form.hidden_field :post_id, value: @post.id %>
+        <div class="actions">
+          <%= form.submit "Like", class: 'btn btn-outline-danger w-100' %>
+        </div>
       <%end%>
-    </div>
-<% end %>
- <%if user_signed_in? %>
- <br>
-  <div class='btn-group'>
-    <%= link_to 'comment on this post', new_user_post_comment_path(@user,@post), class:'btn btn-outline-primary' %>
-      <%= form_with model: @like, url: likes_new_path do |form| %>
-        <%= form.hidden_field :post_id, value: @post.id %>
-      <div class="actions">
-        <%= form.submit "Like", class: 'btn btn-outline-danger w-100' %>
-      </div>
-     <%end%>
- </div>
-<% end %>
-</li>
+  </div>
+  <% end %>
+</div>
