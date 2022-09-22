@@ -11,18 +11,10 @@
   <%= @user.bio %>
   </p>
 </div> 
-<ul class='list-group mt-3'>
-  <% @recent_posts.each do |post| %>
-    <li class='list-group-item'>
-    Post #<%=post.id%>
-   <h4> <%= post.title %> </h4>
-    <p>
-    <%= post.text%>
-    </p>
-    <span>comments: <%= post.comments.length %></span>
-    <span class='ml-2'>likes: <%= post.likesCounter %></span>
-    <%= link_to 'see post', user_post_path(@user,post), class: 'btn btn-secondary w-100' %>
-    </li>
-  <% end %>
-</ul>
-<%= link_to 'see all posts', user_posts_path(@user), class: 'btn btn-dark w-100' %>
+<% @posts = @recent_posts %>
+<% if @posts.empty? %>
+  <%= 'No posts yet' %>
+<%else%>
+<%= render :partial => "shared/postlist", :posts => :posts %>
+<%end%>
+<%= link_to 'see all posts', user_posts_path(@user), class: 'btn btn-info w-100 mt-3' %>
