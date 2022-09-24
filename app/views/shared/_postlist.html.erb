@@ -1,9 +1,22 @@
 <ul class='list-group mt-3'>
 <% @posts.each do |post| %>
   <% @comments = post.comments %>
+  <% @post_time_ago = ((post.created_at - DateTime.now) / 3600 ).abs; @time_name = 'hours'%>
+  <%if( @post_time_ago * 60 ) < 1 %>
+    <% @post_time_ago = @post_time_ago * 3600; @time_name = 'seconds'%>
+  <%elsif @post_time_ago < 1 %>
+    <% @post_time_ago = @post_time_ago * 60; @time_name = 'minutes'%>
+  <%elsif @post_time_ago > 24 %>
+    <% @post_time_ago =  @post_time_ago / 24; @time_name = 'days'%>
+  <%end%>
+
+  <%if @post_time_ago.floor  == 1 %>
+    <%@time_name = @time_name.chop%>
+  <%end%>
+
 <li class='list-group-item '>
 <div class='post-title-text'>
-  Post #<%=post.id%>
+<span class='post-time'>This post was published <%=@post_time_ago.floor%> <%=@time_name%>  ago </span>
     <h4>Title: <%= post.title %> </h4>
     <p class='p-2 '>
     <%= post.text%> 
@@ -18,14 +31,14 @@
       <%= render :partial => "shared/comments", :comments => :comments %>
   <% end %>
   <br>
-  <div class = 'btn-group align-text-center'>
-    <%= link_to 'show this post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
+  <div class = 'btn-group align-text-center w-100'>
+    <%= link_to 'see post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
     <%if user_signed_in? %>
     <%= form_with model: @like, class: 'btn btn-outline-danger', url: likes_new_path do |form| %>
       <%= form.hidden_field :post_id, value: post.id %>
-      <%= form.submit "Like",class: 'btn btn-outline-danger' %>
+      <%= form.submit "Like Post",class: 'like-btn' %>
     <% end %>
-    <%= link_to 'comment on this post', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
+    <%= link_to 'comment', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
     <%end%>
   </div>
   <% end %>
