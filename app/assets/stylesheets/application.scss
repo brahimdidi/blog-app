@@ -9,6 +9,7 @@
 */
  * {
   font-family: 'Roboto', sans-serif;
+  list-style: none;
  }
  ul {
   gap: 10px !important;
@@ -51,40 +52,23 @@ img {
   border-bottom: 2px solid black;
 }
 .go-back {
-  margin-right: 20px;
   text-decoration: none;
   padding: 3px;
   margin-left: 0px;
 }
-.like-btn {
-  border: unset;
-  background: unset;
-  color: unset;
-}
+
 .post-time {
   background-color: #f3f3f3;
   display: block;
   margin-bottom: 10px;
 }
 
-
-
-
 /* .fa {
   display: none;
 }
 /* styling the app for mobile view */
-/* @media screen and (max-width: 600px) {
-  #switch-nav-icon {
-    display: unset;
-    position: absolute;
-    right: 15px;
-    color: white;
-    padding: 10px;
-    font-size: 25px;
-    height: auto;
+@media screen and (min-width: 900px) {
+  .go-back {
+    margin-right: 20px;
   }
-  .nav {
-    display: none;
-  }
-} */ 
+} 
