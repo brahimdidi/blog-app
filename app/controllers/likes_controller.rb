@@ -4,7 +4,7 @@ class LikesController < ApplicationController
     if @like.save
       redirect_to user_post_path(@like.post.user, @like.post)
       @like.update_likes_counter
-      flash[:notice] = 'Post was liked successfully'
+      flash[:notice] = "You just liked this post"
     else
       flash.now[:notice] = 'Error:Like could not be saved'
     end
