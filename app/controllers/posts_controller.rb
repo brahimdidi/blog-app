@@ -9,6 +9,10 @@ class PostsController < ApplicationController
     @user = @post.user
     @comments = @post.comments.includes(:user)
   end
+  def all_posts
+    @posts = Post.all.includes(comments: [:user]).order('created_at DESC')
+    @user = current_user
+  end
 
   def new
     @user = current_user
@@ -17,6 +21,7 @@ class PostsController < ApplicationController
       format.html { render :new, locals: { post: } }
     end
   end
+
 
   def create
     @user = current_user
