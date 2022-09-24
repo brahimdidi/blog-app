@@ -50,7 +50,22 @@ img {
 .post-title-text {
   border-bottom: 2px solid black;
 }
-
+.go-back {
+  margin-right: 20px;
+  text-decoration: none;
+  padding: 3px;
+  margin-left: 0px;
+}
+.like-btn {
+  border: unset;
+  background: unset;
+  color: unset;
+}
+.post-time {
+  background-color: #f3f3f3;
+  display: block;
+  margin-bottom: 10px;
+}
 
 
 
