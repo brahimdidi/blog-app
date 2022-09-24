@@ -34,9 +34,9 @@
   <div class = 'btn-group align-text-center w-100'>
     <%= link_to 'see post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
     <%if user_signed_in? %>
-    <%= form_with model: @like, class: 'btn btn-outline-danger', url: likes_new_path do |form| %>
+    <%= form_with model: @like, class: 'btn btn-danger', url: likes_new_path do |form| %>
       <%= form.hidden_field :post_id, value: post.id %>
-      <%= form.submit "Like Post",class: 'like-btn' %>
+      <%= form.submit "Like Post",class:'btn btn-danger w-100' %>
     <% end %>
     <%= link_to 'comment', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
     <%end%>

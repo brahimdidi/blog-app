@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-  <% unless current_page?(root_path) %>
+  <% unless current_page?(root_path) || current_page?(users_path) %>
   <%= link_to '< Go back', :back, class:'btn btn-secondary go-back' %>
   <%end%>
   <%= link_to 'users', users_path, class: 'navbar-brand' %>
@@ -19,7 +19,7 @@
         <li class="nav-item"><%= link_to 'sign up', new_user_registration_path, class: 'nav-link' %></li>
         <li class="nav-item"><%= link_to 'sign in', new_user_session_path, class: 'nav-link' %></li>
         <% end %>
-        <li class="nav-item"> <%= link_to 'about us', users_path, class: '' %> </li>
+        <li class="nav-item"> <%= link_to 'about us', '/about_us', class: '' %> </li>
       </ul>
     </div>
   </div>
