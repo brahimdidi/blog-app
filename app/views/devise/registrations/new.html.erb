@@ -8,13 +8,15 @@
   </div>
 
 
-
-
+  <div class="field">
+  <%= f.label :photo , class: 'mt-1' %>
+  Optional add a link to your picture
+  <%= f.text_area :photo, placeholder:''  ,class:'form-control photo-input', autocomplete: "photo", value:'' %>
+  </div>
   <div class="field">
   <%= f.label :bio %><br />
   <%= f.text_field :bio,  class:'form-control', autocomplete: "bio" %>
   </div>
-
 
   <div class="field">
     <%= f.label :email %><br />
