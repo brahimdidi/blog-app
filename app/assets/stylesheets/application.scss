@@ -1,0 +1,90 @@
+
+
+// Custom bootstrap variables must be set or imported *before* bootstrap.
+@import 'bootstrap-custom';
+/*
+*= require bootstrap
+*= require_tree .
+*= require_self
+*/
+ * {
+  font-family: 'Roboto', sans-serif;
+ }
+ ul {
+  gap: 10px !important;
+ }
+ ul li {
+  padding: 10px;
+ }
+ a {
+  font-family: 'Anek Telugu', sans-serif;
+  text-transform: capitalize;
+ }
+ h1 {
+  font-size: 4vw;
+ }
+
+
+.form-group {
+  gap: 5px;
+}
+
+#dropdown {
+  position: absolute;
+  right: 10px;
+  top: 3px;
+}
+img {
+  max-height: 300px;
+  max-width: 300px;
+}
+.show-post-container {
+    gap: 10px;
+    margin-top: 10px;
+    padding: 10px;
+}
+.comment-list {
+  gap: 3px;
+}
+
+.post-title-text {
+  border-bottom: 2px solid black;
+}
+.go-back {
+  margin-right: 20px;
+  text-decoration: none;
+  padding: 3px;
+  margin-left: 0px;
+}
+.like-btn {
+  border: unset;
+  background: unset;
+  color: unset;
+}
+.post-time {
+  background-color: #f3f3f3;
+  display: block;
+  margin-bottom: 10px;
+}
+
+
+
+
+/* .fa {
+  display: none;
+}
+/* styling the app for mobile view */
+/* @media screen and (max-width: 600px) {
+  #switch-nav-icon {
+    display: unset;
+    position: absolute;
+    right: 15px;
+    color: white;
+    padding: 10px;
+    font-size: 25px;
+    height: auto;
+  }
+  .nav {
+    display: none;
+  }
+} */ 

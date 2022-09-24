@@ -19,13 +19,14 @@ class CommentsController < ApplicationController
     @comment.user_id = @user.id
     @comment.post_id = @post.id
     if @comment.save
-      flash[:notice] = 'Comment was published on the post!'
+      flash[:notice] = 'You just commented on this post'
       redirect_to user_post_path(@post.user, @post)
     else
       flash.now[:notice] = 'Could not send your comment ,please try again!'
       render :new, locals: { comment: @comment }
     end
   end
+
   def destroy
     comment = Comment.find(params[:id])
     post = Post.find(params[:post_id])
