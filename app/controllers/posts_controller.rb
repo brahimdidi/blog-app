@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @user = @post.user
     @comments = @post.comments.includes(:user)
   end
+
   def all_posts
     @posts = Post.all.includes(comments: [:user]).order('created_at DESC')
     @user = current_user
@@ -21,7 +22,6 @@ class PostsController < ApplicationController
       format.html { render :new, locals: { post: } }
     end
   end
-
 
   def create
     @user = current_user
@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    user = User.find(post.user_id)  
+    user = User.find(post.user_id)
     post.comments.destroy_all if post.comments.any?
     post.likes.destroy_all if post.likes.any?
     post.destroy
@@ -47,5 +47,4 @@ class PostsController < ApplicationController
       render :new, alert: 'Error can not delete this post,try again'
     end
   end
-
 end

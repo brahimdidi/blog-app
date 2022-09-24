@@ -1,6 +1,5 @@
 class Api::UsersController < ApplicationController
   # before_action :authorize_request, except: :create
-  
 
   def index
     @users = User.all
@@ -21,6 +20,4 @@ class Api::UsersController < ApplicationController
       render json: @user
     end
   end
-
-  
 end

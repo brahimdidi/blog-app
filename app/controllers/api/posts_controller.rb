@@ -1,5 +1,4 @@
 class Api::PostsController < ApplicationController
-
   def index
     @user = User.find(params[:user_id])
     @posts = @user.posts
@@ -20,6 +19,4 @@ class Api::PostsController < ApplicationController
       render json: @post
     end
   end
-
- 
 end
