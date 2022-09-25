@@ -1,3 +1,6 @@
+<%if !user_signed_in? %>
+   <h2 class='alert alert-warning text-center'> <%=link_to 'log in' , new_user_session_path %> or <%=link_to 'sign up', new_user_registration_path %> to interact </h2>
+<%end%>
 <ul class='list-group mt-3'>
 <% @posts.each do |post| %>
   <% @comments = post.comments %>
@@ -32,13 +35,13 @@
   <% end %>
   <br>
   <div class = 'btn-group align-text-center w-100'>
-    <%= link_to 'see post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
+    <%= link_to 'see post', user_post_path(post.user,post), class:'btn btn-outline-dark ' %>
     <%if user_signed_in? %>
-    <%= form_with model: @like, class: 'btn btn-danger', url: likes_new_path do |form| %>
-      <%= form.hidden_field :post_id, value: post.id %>
-      <%= form.submit "Like Post",class:'btn btn-danger w-100' %>
-    <% end %>
-    <%= link_to 'comment', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
+      <%= form_with model: @like, class: 'btn btn-danger', url: likes_new_path do |form| %>
+        <%= form.hidden_field :post_id, value: post.id %>
+        <%= form.submit "Like Post",class:'btn btn-danger w-100' %>
+      <% end %>
+      <%= link_to 'comment', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
     <%end%>
   </div>
   <% end %>
