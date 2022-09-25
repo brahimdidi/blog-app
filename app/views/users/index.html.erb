@@ -1,15 +1,19 @@
-<h4 class=''>This is a list of all Users in this app</h4>
-<ul class='list-group'>
-  <%@users.each do |user| %>
-    <li class ='list-group-item d-flex flex-column'>
-        <div class= 'd-flex'>
-          <img src=<%= user.photo %> alt='profile picture' class='p-1 w-50'>
-          <div class='ml-4 p-1'>
-            <h1> Name: <strong><%= user.name %></strong></h1>
-            <span>Posts:  <%= user.posts.length %></span>
+<% if user_signed_in? %>
+  <h4 class=''>This is a list of app users</h4>
+  <ul class='list-group'>
+    <%@users.each do |user| %>
+      <li class ='list-group-item d-flex flex-column'>
+          <div class= 'd-flex'>
+            <img src=<%= user.photo %> alt='profile picture' class='p-1 w-50'>
+            <div class='ml-4 p-1'>
+              <h1> Name: <strong><%= user.name %></strong></h1>
+              <span>Posts:  <%= user.posts.length %></span>
+            </div>
           </div>
-        </div>
-      <%= link_to 'see more about this user', user, class: 'btn btn-secondary'%>
-    </li>
-  <%end %>
-</ul>
+        <%= link_to 'see more about this user', user, class: 'btn btn-secondary'%>
+      </li>
+    <%end %>
+  </ul>
+<%else%>
+  <h2 class='mt-3 p-2 text-center'> <%=link_to 'log in' , new_user_session_path %> or <%=link_to 'sign up', new_user_registration_path %> to see more</h2>
+<%end%>
