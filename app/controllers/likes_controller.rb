@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     if !Like.all.where(user_id: current_user.id, post_id: params[:post_id]).empty?
       @post = Post.find(params[:post_id])
       redirect_to request.path
-      return flash[:alert] = 'You already liked this post'
+      flash[:alert] = 'You already liked this post'
     else
       @like = Like.new(post_id: params[:post_id], user_id: current_user.id) 
       if @like.save
