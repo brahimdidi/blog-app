@@ -64,6 +64,40 @@ img {
   margin-bottom: 10px;
 }
 
+.field {
+  padding: 3px;
+}
+
+.shared-links-div {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.shared-links-div > * {
+  border: 1px solid black;
+  text-decoration: none;
+  background: cornflowerblue;
+  color: white;
+  padding: 5px;
+  border-radius: 10px;
+  width: 50%;
+  text-align: center;
+  max-width: 200px;
+}
+.shared-links-div > *:hover {
+  background-color: white;
+  color: black;
+  opacity: 0.4;
+  transition: 0.3 s ease-in-out;
+}
+
+
+
+
+
+
 /* .fa {
   display: none;
 }
