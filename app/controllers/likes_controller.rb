@@ -1,9 +1,5 @@
 class LikesController < ApplicationController
   def create
-    
-
-
-
     if !Like.all.where(user_id: current_user.id, post_id: params[:post_id]).empty?
       @post = Post.find(params[:post_id])
       redirect_to request.path

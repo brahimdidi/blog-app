@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.includes(comments: [:user])
+    @posts = @user.posts.includes(comments: [:user]).order('created_at DESC')
   end
 
   def show
