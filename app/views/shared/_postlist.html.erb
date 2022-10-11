@@ -3,7 +3,7 @@
 <%end%>
 <ul class='list-group mt-3'>
 <% @posts.each do |post| %>
-  <% @comments = post.comments %>
+  <% @comments = post.comments%>
   <% @post_time_ago = ((post.created_at - DateTime.now) / 3600 ).abs; @time_name = 'hours'%>
   <%if( @post_time_ago * 60 ) < 1 %>
     <% @post_time_ago = @post_time_ago * 3600; @time_name = 'seconds'%>
