@@ -91,3 +91,5 @@ group :development, :test do
   gem 'capybara'
   gem 'rspec-rails'
 end
+
+gem "pagy", "~> 5.10"
