@@ -93,3 +93,5 @@ group :development, :test do
 end
 
 gem "pagy", "~> 5.10"
+
+gem "faker", "~> 3.0"

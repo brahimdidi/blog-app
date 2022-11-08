@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @posts = @user.posts.includes(comments: [:user]).order('created_at DESC')
+    # @posts = @user.posts.includes(comments: [:user]).order('created_at DESC')
+    @pagy, @posts = pagy(@user.posts.includes(comments: [:user]).order('created_at DESC'), items: 20)
   end
 
   def show
@@ -11,7 +12,7 @@ class PostsController < ApplicationController
   end
 
   def all_posts
-    @posts = Post.all.includes(comments: [:user]).order('created_at DESC')
+    @pagy, @posts = pagy(Post.all.includes(comments: [:user]).order('created_at DESC'), items: 20)
     @user = current_user
   end
 
