@@ -1,19 +1,22 @@
 class PostsController < ApplicationController
+
   def index
     @user = User.find(params[:user_id])
     # @posts = @user.posts.includes(comments: [:user]).order('created_at DESC')
     @pagy, @posts = pagy(@user.posts.includes(comments: [:user]).order('created_at DESC'), items: 20)
+    self.show_new_pages
   end
 
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @comments = @post.comments.includes(:user)
+    @comments = @post.comments.includes(:user).limit(10)
   end
 
   def all_posts
     @pagy, @posts = pagy(Post.all.includes(comments: [:user]).order('created_at DESC'), items: 20)
     @user = current_user
+    self.show_new_pages
   end
 
   def new
@@ -47,5 +50,9 @@ class PostsController < ApplicationController
     else
       render :new, alert: 'Error can not delete this post,try again'
     end
+  end
+
+  def show_new_pages
+    render "scrollable_list" if params[:page]
   end
 end
