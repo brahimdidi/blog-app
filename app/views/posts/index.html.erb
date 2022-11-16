@@ -9,4 +9,5 @@
   <%= 'No posts yet' %>
 <%else%>
 <%= render :partial => "shared/postlist", :posts => :posts %>
+<%= render :partial => "posts/next_page" %>
 <%end%>
