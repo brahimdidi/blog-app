@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   def index
-    @comments = Comment.where(post: @post)
+    @post = Post.find(params[:post_id])
+    @comments = Comment.where(post: @post).includes(:user)
   end
 
   def new
@@ -32,7 +33,7 @@ class CommentsController < ApplicationController
     post = Post.find(params[:post_id])
     comment.destroy
     if post.save
-      redirect_to user_post_path(params[:user_id], params[:post_id]), notice: 'Comment was successfully deleted.'
+      redirect_to request.referrer, notice: 'Comment was successfully deleted.'
     else
       render :new, alert: 'Error can not delete deleting the comment'
     end
