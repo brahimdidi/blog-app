@@ -19,7 +19,7 @@
     <% if can? :destroy, @post%>
       <li><%= button_to "Delete this post", user_post_path(@user, @post), method: :delete, class: "dropdown-item text-danger" %></li>
     <% end %>
-    <li> <%= link_to 'See author of this post', @post.user ,class:"dropdown-item" %></li>
+    <li> <%= link_to 'See author of this post', @user ,class:"dropdown-item" %></li>
     <li><a class="dropdown-item" href="#">Another action</a></li>
     </ul>
   </div>
@@ -29,7 +29,7 @@
     <%= 'No Comments yet' %>
     <%else%>
   <%= render :partial => "shared/comments", :comments => :comments %>
-      
+  <%= link_to 'see all comment ...', user_post_comments_path(@user, @post), class: '' %>
   <% end %>
   <%if user_signed_in? %>
   <br>
