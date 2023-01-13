@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+before_action :set_current_user , only: [:all_posts, :create, :destroy]
 
   def index
     @user = User.find(params[:user_id])
@@ -15,12 +16,10 @@ class PostsController < ApplicationController
 
   def all_posts
     @pagy, @posts = pagy(Post.all.includes(comments: [:user]).order('created_at DESC'), items: 20)
-    @user = current_user
     self.show_new_pages
   end
 
   def new
-    @user = current_user
     post = Post.new
     respond_to do |format|
       format.html { render :new, locals: { post: } }
@@ -28,7 +27,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @post = @user.posts.new(params.require(:post).permit(:title, :text))
     if @post.save
       flash[:notice] = 'Post was saved successfully'
@@ -52,7 +50,17 @@ class PostsController < ApplicationController
     end
   end
 
+# this method allows to show new pages when the user scrolls downk
   def show_new_pages
     render "scrollable_list" if params[:page]
   end
+
+  # this method sets the current user
+
+  private
+
+  def set_current_user
+    @user = current_user
+  end
+
 end

@@ -10,6 +10,14 @@ class Post < ApplicationRecord
     user.increment!(:postsCounter)
   end
 
+  def deccrement_posts_counter
+    user.deccrement!(:postsCounter)
+  end
+
+  def already_liked?(user)
+    likes.exists?(user_id: user.id)
+  end
+
   def last_5_comments
     comments.limit(5).order(created_at: :desc)
   end
