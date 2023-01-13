@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded mt-1 mb-2">
   <div class="container-fluid">
-  <% unless !user_signed_in? || current_page?(root_path) || current_page?(users_path) %>
+  <% if user_signed_in? && (request.path.to_s.include? "new") %>
     <%= link_to '', :back, class:'fa fa-arrow-left go-back' , id: 'go-back'%>
   <%end%>
   <%= link_to 'users', users_path, class: 'navbar-brand', id: 'navbar-brand' %>
