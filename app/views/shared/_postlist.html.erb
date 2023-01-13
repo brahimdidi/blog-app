@@ -9,17 +9,30 @@
       <% @post_time_ago = @post_time_ago * 3600; @time_name = 'seconds'%>
     <%elsif @post_time_ago < 1 %>
       <% @post_time_ago = @post_time_ago * 60; @time_name = 'minutes'%>
-    <%elsif @post_time_ago > 24 %>
+    <%elsif @post_time_ago.between?(25,720) %>
       <% @post_time_ago =  @post_time_ago / 24; @time_name = 'days'%>
+    <%elsif @post_time_ago.between?(721,8640) %>
+      <% @post_time_ago =  @post_time_ago / 720; @time_name = 'months'%>
+    <%elsif @post_time_ago > 8640 %>
+      <% @post_time_ago =  @post_time_ago / 8640 ; @time_name = 'years'%>
     <%end%>
 
-    <%if @post_time_ago.floor  <= 1 %>
+    <%if @post_time_ago.floor <= 1 %>
       <%@time_name = @time_name.chop%>
+      <% if @time_name == 'second' %>
+        <% @time_name = 'just now'%>
+      <%end%>
+    <%end%>
+
+    <% unless  @time_name == 'just now' %>
+    <% @time_name = @time_name + ' ago' %>
     <%end%>
 
   <li class='list-group-item '>
     <div class='post-title-text'>
-      <span class='post-time'>This post was published <%=@post_time_ago.floor%> <%=@time_name%>  ago </span>
+      <span class='post-time'>This post was published 
+      <% unless @time_name == 'just now' %> <%= @post_time_ago.floor%> <%end%>
+       <%=@time_name%>  </span>
       <h4>Title: <%= post.title %> </h4>
       <p class='p-2 '> <%= post.text%> </p>
     </div>
@@ -38,10 +51,18 @@
     <div class = 'btn-group align-text-center w-100'>
       <%= link_to 'see post', user_post_path(@user,post), class:'btn btn-outline-dark ' %>
       <%if user_signed_in? %>
-        <%= form_with model: @like, class: 'btn btn-danger', url: likes_new_path do |form| %>
-          <%= form.hidden_field :post_id, value: post.id %>
-          <%= form.submit "Like Post",class:'btn btn-danger w-100' %>
+        <% if post.already_liked?(current_user) %>
+          <%= form_with model: @like, class: 'btn btn-danger', url: likes_new_path do |form| %>
+            <%= form.hidden_field :post_id, value: post.id %>
+            <%= form.submit "UnLike Post",class:'btn btn-danger w-100' %>
+          <% end %>
+        <% else %>
+          <%= form_with model: @like, class: 'btn btn-danger', url: likes_new_path do |form| %>
+            <%= form.hidden_field :post_id, value: post.id %>
+            <%= form.submit "Like Post",class:'btn btn-danger w-100' %>
+          <% end %>
         <% end %>
+        
         <%= link_to 'comment', new_user_post_comment_path(@user,post), class:'btn btn-outline-primary' %>
       <%end%>
     </div>
