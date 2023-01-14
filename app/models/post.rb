@@ -6,6 +6,10 @@ class Post < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 250 }
   validates :commentsCounter, :likesCounter, numericality: { greater_than: -1, allow_nil: true }
+
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   def increment_posts_counter
     user.increment!(:postsCounter)
   end
