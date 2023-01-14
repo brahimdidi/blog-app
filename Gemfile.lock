@@ -108,6 +108,8 @@ GEM
     faker (3.0.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5-x64-mingw-ucrt)
+    friendly_id (5.5.0)
+      activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -286,6 +288,7 @@ DEPENDENCIES
   devise
   faker (~> 3.0)
   ffi
+  friendly_id (~> 5.5)
   importmap-rails
   jbuilder
   jquery-rails
