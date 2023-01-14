@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_current_user , only: [:all_posts, :new, :create, :destroy]
-  before_action :set_post , only: [:show, :destroy]
+  before_action :set_current_user, only: %i[all_posts new create destroy]
+  before_action :set_post, only: %i[show destroy]
 
   def index
     @user = User.friendly.find(params[:user_id])
     # @posts = @user.posts.includes(comments: [:user]).order('created_at DESC')
     @pagy, @posts = pagy(@user.posts.includes(comments: [:user]).order('created_at DESC'), items: 20)
-    self.show_new_pages
+    show_new_pages
   end
 
   def show
@@ -16,7 +16,7 @@ class PostsController < ApplicationController
 
   def all_posts
     @pagy, @posts = pagy(Post.all.includes(comments: [:user]).order('created_at DESC'), items: 20)
-    self.show_new_pages
+    show_new_pages
   end
 
   def new
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
     @post.likes.destroy_all if @post.likes.any?
     @post.destroy
     if @user.save
-      flash[:notice] =  'Post was successfully deleted.'
+      flash[:notice] = 'Post was successfully deleted.'
       redirect_to user_posts_path(@user)
     else
       render :new, alert: 'Error can not delete this post,try again'
@@ -51,7 +51,7 @@ class PostsController < ApplicationController
 
   # this method allows to show new pages when the user scrolls downk
   def show_new_pages
-    render "scrollable_list" if params[:page]
+    render 'scrollable_list' if params[:page]
   end
 
   # this method sets the current user
@@ -62,8 +62,7 @@ class PostsController < ApplicationController
     @user = current_user
   end
 
-  def set_post 
+  def set_post
     @post = Post.friendly.find(params[:id])
   end
-
 end

@@ -27,30 +27,31 @@ class Post < ApplicationRecord
   end
 
   def get_time_ago
-    @post_time_ago = ((created_at - DateTime.now) / 3600 ).abs; 
-    @time_name = 'hours';
-    if( @post_time_ago * 60 ) < 1 
-       @post_time_ago = @post_time_ago * 3600; @time_name = 'seconds'
-    elsif @post_time_ago < 1 
-       @post_time_ago = @post_time_ago * 60; @time_name = 'minutes'
-    elsif @post_time_ago.between?(25,720) 
-       @post_time_ago =  @post_time_ago / 24; @time_name = 'days'
-    elsif @post_time_ago.between?(721,8640) 
-       @post_time_ago =  @post_time_ago / 720; @time_name = 'months'
-    elsif @post_time_ago > 8640 
-       @post_time_ago =  @post_time_ago / 8640 ; @time_name = 'years'
+    @post_time_ago = ((created_at - DateTime.now) / 3600).abs
+    @time_name = 'hours'
+    if (@post_time_ago * 60) < 1
+      @post_time_ago *= 3600
+      @time_name = 'seconds'
+    elsif @post_time_ago < 1
+      @post_time_ago *= 60
+      @time_name = 'minutes'
+    elsif @post_time_ago.between?(25, 720)
+      @post_time_ago /= 24
+      @time_name = 'days'
+    elsif @post_time_ago.between?(721, 8640)
+      @post_time_ago /= 720
+      @time_name = 'months'
+    elsif @post_time_ago > 8640
+      @post_time_ago /= 8640
+      @time_name = 'years'
     end
 
-    if @post_time_ago.floor <= 1 
+    if @post_time_ago.floor <= 1
       @time_name = @time_name.chop
-       if @time_name == 'second' 
-         @time_name = 'just now'
-      end
+      @time_name = 'just now' if @time_name == 'second'
     end
 
-     unless  @time_name == 'just now' 
-     @time_name = @time_name + ' ago' 
-    end
-    return {post_time_ago: @post_time_ago, time_name: @time_name}
+    @time_name += ' ago' unless @time_name == 'just now'
+    { post_time_ago: @post_time_ago, time_name: @time_name }
   end
 end

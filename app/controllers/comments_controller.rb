@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_current_user_and_post , only: [ :new, :create, :destroy, :index]
+  before_action :set_current_user_and_post, only: %i[new create destroy index]
 
   def index
     @comments = Comment.where(post: @post).includes(:user)

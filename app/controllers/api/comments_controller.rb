@@ -13,11 +13,11 @@ class Api::CommentsController < ApplicationController
 
   def create
     comment = Comment.new(comment_params)
-     if comment.save
+    if comment.save
       render json: { message: 'comment posted' }, status: :created
-     else
+    else
       render json: { message: 'not created' }, status: :not_found
-     end
+    end
   end
 
   private
