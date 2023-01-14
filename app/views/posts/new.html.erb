@@ -1,8 +1,10 @@
-<div><span>@<%=@user.name%></span> <h3>Create new post</h3></div>
+<div class='mt-2'>
+<span class='fw-bold border-bottom p-1 d-block'>@<%=@user.name%></span>
+<h3 class='mt-2'>Create new post</h3>
+</div>
 <%= form_with model: @post, url: user_posts_path, 
 method: :post, local: true, scope: :post,class: 'w-100 d-flex flex-column'  do |form| %>
-  <%= form.text_field :title, placeholder: 'title',class: 'w-50' %>
-  <%= form.text_field :text, placeholder: 'post content',class: 'w-50' %>
-  <%= form.submit "post",class: 'w-50 btn btn-success' %>
+  <%= form.text_field :title, placeholder: 'Post title',class: 'form-control' %>
+  <%= form.text_area :text, placeholder: 'post content',class: 'form-control mt-1',style:"height: 100px" %>
+  <%= form.submit "post",class: 'btn btn-info mt-2' %>
 <% end %>
-<%= link_to "Back to posts", user_posts_path, class:"btn btn-info mt-2 w-25" %>

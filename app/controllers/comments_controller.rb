@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :set_current_user_and_post, only: %i[new create destroy index]
+
   def index
-    @comments = Comment.where(post: @post)
+    @comments = Comment.where(post: @post).includes(:user)
   end
 
   def new
-    @post = Post.find(params[:post_id])
-    @user = current_user
     comment = Comment.new
     respond_to do |format|
       format.html { render :new, locals: { comment: } }
@@ -13,8 +13,6 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @user = current_user
-    @post = Post.find(params[:post_id])
     @comment = Comment.new(params.require(:comment).permit(:text))
     @comment.user_id = @user.id
     @comment.post_id = @post.id
@@ -29,12 +27,16 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = Comment.find(params[:id])
-    post = Post.find(params[:post_id])
     comment.destroy
-    if post.save
-      redirect_to user_post_path(params[:user_id], params[:post_id]), notice: 'Comment was successfully deleted.'
+    if @post.save
+      redirect_to request.referrer, notice: 'Comment was successfully deleted.'
     else
       render :new, alert: 'Error can not delete deleting the comment'
     end
+  end
+
+  def set_current_user_and_post
+    @user = current_user
+    @post = Post.friendly.find(params[:post_id])
   end
 end

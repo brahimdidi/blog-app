@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "posts-page#{@pagy.page}" do %>
+  <%= render :partial => "shared/postlist", :posts => :posts %>
+  <%= render :partial => "posts/next_page" %>
+<% end %>

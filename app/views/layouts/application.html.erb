@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>BlogApp</title>
+    <title>Blog App</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -17,15 +17,18 @@
   </head>
 
   <body class=''>
-    <div class= 'container bg-light mb-2'>
+    <div class= 'container bg-light mb-2 p-1'>
       <%= render 'layouts/navbar' %>
       <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong><%= alert%></strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
       <%end%>
       <% if notice %>
       <p class= 'alert alert-success'><%= notice%> </p>
       <script>
-     // this function auto remove the alert after 2 seconds
+     // this function auto removes the notification after 2 seconds
         setTimeout (function () {
         let alertElement = document.querySelector('.alert')
         alertElement.remove()

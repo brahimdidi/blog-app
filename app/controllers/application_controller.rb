@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
+  before_action :authenticate_user! #-> routes to the login / signup if not authenticated
+
   protect_from_forgery with: :exception
 
   before_action :update_allowed_parameters, if: :devise_controller?
@@ -6,7 +9,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def update_allowed_parameters
-    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :bio, :email, :password) }
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:name, :bio, :photo, :email, :password) }
     devise_parameter_sanitizer.permit(:account_update) do |u|
       u.permit(:name, :bio, :email, :password, :current_password)
     end

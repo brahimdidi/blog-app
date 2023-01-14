@@ -105,7 +105,11 @@ GEM
     digest (3.1.0)
     erubi (1.11.0)
     execjs (2.8.1)
+    faker (3.0.0)
+      i18n (>= 1.8.11, < 2)
     ffi (1.15.5-x64-mingw-ucrt)
+    friendly_id (5.5.0)
+      activerecord (>= 4.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -152,6 +156,8 @@ GEM
     nokogiri (1.13.8-x64-mingw-ucrt)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (5.10.1)
+      activesupport
     pg (1.4.3-x64-mingw-ucrt)
     popper_js (2.11.6)
     public_suffix (5.0.0)
@@ -280,10 +286,13 @@ DEPENDENCIES
   capybara
   debug
   devise
+  faker (~> 3.0)
   ffi
+  friendly_id (~> 5.5)
   importmap-rails
   jbuilder
   jquery-rails
+  pagy (~> 5.10)
   pg (~> 1.1)
   popper_js (~> 2.11, >= 2.11.6)
   puma (~> 5.0)

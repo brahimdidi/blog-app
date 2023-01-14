@@ -1,12 +1,20 @@
 class LikesController < ApplicationController
   def create
-    @like = Like.new(post_id: params[:post_id], user_id: current_user.id)
-    if @like.save
-      redirect_to user_post_path(@like.post.user, @like.post)
-      @like.update_likes_counter
-      flash[:notice] = 'You just liked this post'
+    if Like.all.where(user_id: current_user.id, post_id: params[:post_id]).empty?
+      @like = Like.new(post_id: params[:post_id], user_id: current_user.id)
+      if @like.save
+        redirect_to request.path
+        @like.increment_likes_counter
+        flash[:notice] = 'You just liked this post'
+      else
+        flash.now[:notice] = 'Error:Like could not be saved'
+      end
     else
-      flash.now[:notice] = 'Error:Like could not be saved'
+      like = Like.all.where(user_id: current_user.id, post_id: params[:post_id]).first
+      like.destroy
+      like.decrement_likes_counter
+      redirect_to request.path
+      flash[:alert] = 'post was unliked'
     end
   end
 end
