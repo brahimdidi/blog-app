@@ -95,3 +95,5 @@ end
 gem "pagy", "~> 5.10"
 
 gem "faker", "~> 3.0"
+
+gem 'friendly_id', '~> 5.5'
